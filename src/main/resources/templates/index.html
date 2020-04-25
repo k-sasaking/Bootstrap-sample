@@ -9,10 +9,10 @@
     <article>
 	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<div th:each="article : ${articles}">
-		    <ul class="list-group" th:if="${article.isPublished}" style="border:1px solid;">
-			  <li class="list-group-item">投稿名: <span th:text="${article.postName}"></span></li>
-			  <li class="list-group-item">投稿日: <span th:text="${article.postDate}"></span></li>
-			  <li class="list-group-item">投稿内容: <span th:text="${article.postText}"></span></li>
+		    <ul class="list-group" th:if="${article.getIsPublished()}" style="border:1px solid;">
+			  <li class="list-group-item">投稿名: <span th:text="${article.getPostName()}"></span></li>
+			  <li class="list-group-item">投稿日: <span th:text="${article.getPostDate()}"></span></li>
+			  <li class="list-group-item">投稿内容: <span th:text="${article.getPostText()}"></span></li>
 			  <li class="list-group-item">
 			      <button type="button" class="btn btn-primary">Publish</button>
 			      <button type="button" class="btn btn-success">Edit</button>

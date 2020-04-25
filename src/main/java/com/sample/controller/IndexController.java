@@ -1,51 +1,31 @@
 package com.sample.controller;
 
-import java.util.ArrayList;
-import java.util.Date;
+import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.sample.entity.Article;
+import com.sample.service.PostService;
+
 @Controller
 public class IndexController {
+	
+	@Autowired
+    private PostService postService;
 	
     @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index(Model model) {
     	
-    	ArrayList<Article> articles = new ArrayList<Article>();
-    	articles.add(new Article("Tom", "Hello World!!"));
-    	articles.add(new Article("Alex", "Let's enjoy Springbooooooot!!", false));
-    	articles.add(new Article("Emily", "We can do it!"));
-    	articles.add(new Article("Ann",  "Awesome!!"));
+    	List<Article> articles = postService.getAllArticles();
     	
     	model.addAttribute("message", "This is sample page"); 	
     	model.addAttribute("articles", articles); 
     	
         return "index";
     }
-    
-    
-    class Article {
-    	
-    	public String postName;
-    	public Date postDate;
-    	public String postText;
-    	public boolean isPublished;
-    	
-    	Article(String name, String text) {
-    		this.postName = name;
-    		this.postDate = new Date();
-    		this.postText = text;
-    		this.isPublished = true;
-    	}
-    	
-    	Article(String name, String text, boolean isPublished) {
-    		this(name, text);
-    		this.isPublished = isPublished;
-    	}
-    	
-    }
-    
+        
 }
