@@ -1,13 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <title>Index Page</title>
-    <meta charset="utf-8" />
+  <head  th:replace="base/common :: meta_head('top',~{::link},~{::script})">
+      <link rel="stylesheet" th:href="@{/css/top.css}" />
+      <script type="text/javascript" th:src="@{/js/sample.js}"></script>
   </head>
   <body>
-    <h1>HOME</h1>
-    <p>
-      <span th:text="${message}"></span>
-    </p>
+    <header th:replace="base/common :: header('TOP')"></header>
+    <article>
+	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
+		<div th:each="article : ${articles}">
+		    <ul class="list-group" th:if="${article.isPublished}" style="border:1px solid;">
+			  <li class="list-group-item">投稿名: <span th:text="${article.postName}"></span></li>
+			  <li class="list-group-item">投稿日: <span th:text="${article.postDate}"></span></li>
+			  <li class="list-group-item">投稿内容: <span th:text="${article.postText}"></span></li>
+			  <li class="list-group-item">
+			      <button type="button" class="btn btn-primary">Publish</button>
+			      <button type="button" class="btn btn-success">Edit</button>
+			      <button type="button" class="btn btn-danger">Delete</button>
+			  </li>
+			</ul>
+	    </div> 
+    </article>
+    <footer th:replace="base/common :: footer"></footer>
   </body>
 </html>
