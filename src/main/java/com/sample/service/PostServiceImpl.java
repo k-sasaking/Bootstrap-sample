@@ -1,6 +1,7 @@
 package com.sample.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,12 @@ public class PostServiceImpl implements PostService {
 	public List<Article> getAllArticles() {
 		
 		return articleRepository.findAll();
+	}
+
+	@Override
+	public Optional<Article> getArticleById(int id) {
+		
+		return articleRepository.findById(id);
 	}
 
 	@Override

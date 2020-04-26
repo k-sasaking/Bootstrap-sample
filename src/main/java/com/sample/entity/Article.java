@@ -44,11 +44,16 @@ public class Article {
 	}
 	
 	public Article(PostForm form) {
+		this.id = form.getId();
 		this.postName = form.getPostName();
 		this.postText = form.getPostText();
 		this.isPublished = form.getIsPublished();
 	}
 	
+	
+	public Integer getId() {
+		return id;
+	}
 	public String getPostName() {
 		return postName;
 	}

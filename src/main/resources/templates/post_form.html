@@ -9,6 +9,7 @@
     <article>
 	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<form method="post" th:action="@{/post/create}" th:object="${postForm}">
+		  <input type="hidden" name="id" th:value="*{id}">
 		  <div class="form-group">
 		    <label for="postName" th:classappend="${#fields.hasErrors('postName')} ? text-danger : ''">投稿者名</label>
 		    <input type="text" class="form-control" id="postName" placeholder="post name" name="postName" th:value="*{postName}" required
@@ -17,7 +18,7 @@
 		  </div>
 		  <div class="form-group">
 		    <label for="postText" th:classappend="${#fields.hasErrors('postText')} ? text-danger : ''">投稿内容</label>
-		    <textarea class="form-control" id="postText" rows="5" placeholder="Please input text here." name="postText" th:value="*{postText}" required
+		    <textarea class="form-control" id="postText" rows="5" placeholder="Please input text here." name="postText" th:text="*{postText}" required
 		    		  th:classappend="${#fields.hasErrors('postText')} ?  is-invalid : ''"></textarea>
 		    <span th:if="${#fields.hasErrors('postText')}" th:errors="*{postText}" class="help-block text-danger">Please correct value</span>
 		  </div>
