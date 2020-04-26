@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.sample.entity.Article;
+import com.sample.form.PostForm;
 import com.sample.repository.ArticleRepository;
 
 @Service
@@ -18,6 +19,12 @@ public class PostServiceImpl implements PostService {
 	public List<Article> getAllArticles() {
 		
 		return articleRepository.findAll();
+	}
+
+	@Override
+	public void createArticle(PostForm form) {
+		
+		articleRepository.saveAndFlush(new Article(form));
 	}
 
 }

@@ -8,8 +8,11 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+
+import com.sample.form.PostForm;
 
 @Entity
 @Table(name = "Article")
@@ -19,18 +22,17 @@ public class Article {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    @NotNull
     private Integer id;
 
     @Column(name = "post_name", length = 30)
-    @NotEmpty
+    @NotBlank
 	private String postName;
     
     @Column(name = "post_date")
     private Date postDate;
 	
     @Column(name = "post_text", length = 200)
-    @NotNull
+    @NotEmpty
 	private String postText;
 	
     @Column(name = "is_published")
@@ -39,6 +41,12 @@ public class Article {
     
 	public Article() {
 
+	}
+	
+	public Article(PostForm form) {
+		this.postName = form.getPostName();
+		this.postText = form.getPostText();
+		this.isPublished = form.getIsPublished();
 	}
 	
 	public String getPostName() {
