@@ -10,12 +10,16 @@
 	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<form method="post" th:action="@{/post/create}" th:object="${postForm}">
 		  <div class="form-group">
-		    <label for="postName">投稿者名</label>
-		    <input type="text" class="form-control" id="postName" placeholder="post name" name="postName" th:value="*{postName}" required>
+		    <label for="postName" th:classappend="${#fields.hasErrors('postName')} ? text-danger : ''">投稿者名</label>
+		    <input type="text" class="form-control" id="postName" placeholder="post name" name="postName" th:value="*{postName}" required
+		     th:classappend="${#fields.hasErrors('postName')} ?  is-invalid : ''">
+		    <span th:if="${#fields.hasErrors('postName')}" th:errors="*{postName}" class="help-block text-danger">Please correct value</span>
 		  </div>
 		  <div class="form-group">
-		    <label for="postText">投稿内容</label>
-		    <textarea class="form-control" id="postText" rows="5" placeholder="Please input text here." name="postText" th:value="*{postText}" required></textarea>
+		    <label for="postText" th:classappend="${#fields.hasErrors('postText')} ? text-danger : ''">投稿内容</label>
+		    <textarea class="form-control" id="postText" rows="5" placeholder="Please input text here." name="postText" th:value="*{postText}" required
+		    		  th:classappend="${#fields.hasErrors('postText')} ?  is-invalid : ''"></textarea>
+		    <span th:if="${#fields.hasErrors('postText')}" th:errors="*{postText}" class="help-block text-danger">Please correct value</span>
 		  </div>
 		  <div class="form-group">
 		    <div class="form-check">
