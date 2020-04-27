@@ -34,4 +34,10 @@ public class PostServiceImpl implements PostService {
 		articleRepository.saveAndFlush(new Article(form));
 	}
 
+	@Override
+	public void deleteArticle(Integer id) {
+		
+		articleRepository.deleteById(id);		
+	}
+	
 }

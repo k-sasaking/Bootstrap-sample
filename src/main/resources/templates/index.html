@@ -18,7 +18,9 @@
 			      <a th:href="@{/post/edit/{id}(id=${article.getId()})}">
 			      	<button type="button" class="btn btn-success">Edit</button>
 			      </a>
-			      <button type="button" class="btn btn-danger">Delete</button>
+			      <a th:href="@{/post/delete/confirm/{id}(id=${article.getId()})}">
+			        <button type="button" class="btn btn-danger">Delete</button>
+			      </a>
 			  </li>
 			</ul>
 	    </div> 

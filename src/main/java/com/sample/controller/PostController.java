@@ -77,5 +77,34 @@ public class PostController {
 		return "error/404";
     	
     }
+    
+    @RequestMapping(value = "/post/delete/confirm/{id}", method = RequestMethod.GET)
+    public String post_delete_confirm(
+    		Model model,
+    		@PathVariable("id") int id
+    	) {
+    	
+    	Optional<Article> resultArticle = postService.getArticleById(id);
+		if(resultArticle.isPresent()) {
+    		model.addAttribute("message", "This is delete page"); 	
+        	model.addAttribute("article", resultArticle.get()); 	
+        	
+            return "delete_confirm";
+    	}
+		return "error/404";
+    	
+    }
+    
+    @RequestMapping(value = "/post/delete/complete", method = RequestMethod.POST)
+    public String post_delete_complete(
+    		Model model,
+    		@ModelAttribute("id")
+    		Integer id
+    	) {
+
+    	postService.deleteArticle(id);
+        return "redirect:/";
+    	
+    }
 
 }
