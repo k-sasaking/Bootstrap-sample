@@ -12,5 +12,6 @@ public interface PostService {
 	public Optional<Article> getArticleById(int id);
 	public void createArticle(PostForm form);
 	public void deleteArticle(Integer id);
+	public List<Article> searchArticles(String word);
 
 }

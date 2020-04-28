@@ -13,5 +13,6 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 
 	List<Article> findAll();
 	Optional<Article> findById(int id);
+	List<Article> findByPostTextLike(String word);
 	
 }

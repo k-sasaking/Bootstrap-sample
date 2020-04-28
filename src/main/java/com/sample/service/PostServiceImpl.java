@@ -39,5 +39,11 @@ public class PostServiceImpl implements PostService {
 		
 		articleRepository.deleteById(id);		
 	}
+
+	@Override
+	public List<Article> searchArticles(String word) {
+		
+		return articleRepository.findByPostTextLike("%" + word + "%");
+	}
 	
 }
