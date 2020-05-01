@@ -9,7 +9,7 @@
     <article>
 	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<div th:each="article : ${articles}">
-		    <ul class="list-group" th:if="${article.getIsPublished()}" style="border:1px solid;">
+		    <ul class="list-group" style="border:1px solid;">
 			  <li class="list-group-item">投稿名: <span th:text="${article.getPostName()}"></span></li>
 			  <li class="list-group-item">投稿日: <span th:text="${article.getPostDate()}"></span></li>
 			  <li class="list-group-item">投稿内容: <span th:text="${article.getPostText()}"></span></li>
@@ -24,6 +24,25 @@
 			  </li>
 			</ul>
 	    </div> 
+		<nav aria-label="Page navigation example">
+		  <ul class="pagination justify-content-center">
+		    <li class="page-item" th:classappend="${articles.hasPrevious() ? '' : 'disabled'}">
+		      <a class="page-link" th:href="@{'search'(page=0,word=${word})}" tabindex="-1">First</a>
+		    </li>
+		    <li class="page-item" th:classappend="${articles.hasPrevious() ? '' : 'disabled'}">
+		    	<a class="page-link" th:href="@{'search'(page=(${articles.getNumber()}-1),word=${word})}">Previous</a>
+		    </li>
+		    <li class="page-item disabled">
+		    	<a class="page-link" th:href="@{'search'(page=${articles.getNumber()},word=${word})}" th:text="${articles.getNumber()+1}"></a>
+		    </li>
+		    <li class="page-item" th:classappend="${articles.hasNext() ? '' : 'disabled'}">
+		    	<a class="page-link" th:href="@{'search'(page=(${articles.getNumber()}+1),word=${word})}">Next</a>
+		    </li>
+		    <li class="page-item" th:classappend="${articles.hasNext() ? '' : 'disabled'}">
+		      <a class="page-link" th:href="@{'search'(page=(${articles.totalPages}-1),word=${word})}">Last</a>
+		    </li>
+		  </ul>
+		</nav>
     </article>
     <footer th:replace="base/common :: footer"></footer>
   </body>

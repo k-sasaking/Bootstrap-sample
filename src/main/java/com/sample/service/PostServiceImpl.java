@@ -4,6 +4,8 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sample.entity.Article;
@@ -44,6 +46,18 @@ public class PostServiceImpl implements PostService {
 	public List<Article> searchArticles(String word) {
 		
 		return articleRepository.findByPostTextLike("%" + word + "%");
+	}
+
+	@Override
+	public Page<Article> getAllArticles(Pageable pageable) {
+		
+		return articleRepository.findAll(pageable);
+	}
+	
+	@Override
+	public Page<Article> searchArticles(Pageable pageable, String word) {
+		
+		return articleRepository.findByPostTextLike(pageable, "%" + word + "%");
 	}
 	
 }
