@@ -30,10 +30,10 @@ public class SearchController {
     	
     	Page<Article> articles = null;
     	if("".equals(searchWord)) {
-        	articles = postService.getAllArticles(pageable);
+        	articles = postService.getAllArticles(pageable, true);
     	}
     	else{
-    		articles = postService.searchArticles(pageable, searchWord);
+    		articles = postService.searchArticles(pageable, searchWord, true);
     	}
     	
     	model.addAttribute("message", "This is sample page"); 	

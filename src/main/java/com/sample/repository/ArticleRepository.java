@@ -18,5 +18,7 @@ public interface ArticleRepository extends JpaRepository<Article, Integer> {
 	List<Article> findByPostTextLike(String word);
 	Page<Article> findAll(Pageable pageable);
 	Page<Article> findByPostTextLike(Pageable pageable, String word);
+	Page<Article> findByIsPublishedIs(Pageable pageable, boolean isPublished);
+	Page<Article> findByPostTextLikeAndIsPublishedIs(Pageable pageable, String word, boolean isPublished);
 	
 }

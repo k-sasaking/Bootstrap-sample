@@ -37,6 +37,12 @@ public class PostServiceImpl implements PostService {
 	}
 
 	@Override
+	public void updateArticle(Article article) {
+		
+		articleRepository.saveAndFlush(article);
+	}
+
+	@Override
 	public void deleteArticle(Integer id) {
 		
 		articleRepository.deleteById(id);		
@@ -58,6 +64,18 @@ public class PostServiceImpl implements PostService {
 	public Page<Article> searchArticles(Pageable pageable, String word) {
 		
 		return articleRepository.findByPostTextLike(pageable, "%" + word + "%");
+	}
+	
+	@Override
+	public Page<Article> getAllArticles(Pageable pageable, boolean isPublished) {
+		
+		return articleRepository.findByIsPublishedIs(pageable, isPublished);
+	}
+	
+	@Override
+	public Page<Article> searchArticles(Pageable pageable, String word, boolean isPublished) {
+		
+		return articleRepository.findByPostTextLikeAndIsPublishedIs(pageable, "%" + word + "%", isPublished);
 	}
 	
 }
