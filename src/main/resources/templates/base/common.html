@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head th:fragment="meta_head(title,links,scripts)">
     <meta charset="UTF-8">
 	<!-- Bootstrap core CSS -->
@@ -50,8 +51,9 @@
 		    </ul>
 		  </div>
 		  <div class="form-inline my-2 my-lg-0">
-	        <a class="nav-link" href="#">SignIn <span class="sr-only">(current)</span></a>
-	        <a class="nav-link" href="#">SignUp <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" sec:authorize="!isAuthenticated()" href="/signin">SignIn <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" sec:authorize="!isAuthenticated()" href="/signup">SignUp <span class="sr-only">(current)</span></a>
+	        <a class="nav-link" sec:authorize="isAuthenticated()" href="/signout">Sign Out <span class="sr-only">(current)</span></a>
 		  </div>
   		</nav>
     </header>

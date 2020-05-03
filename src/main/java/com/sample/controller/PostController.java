@@ -55,7 +55,7 @@ public class PostController {
     	
     	postService.createArticle(postForm);
     	
-        return "redirect:/";
+        return "redirect:/admin";
         
     }
     
@@ -103,7 +103,7 @@ public class PostController {
     	) {
 
     	postService.deleteArticle(id);
-        return "redirect:/";
+        return "redirect:/admin";
     	
     }
 
