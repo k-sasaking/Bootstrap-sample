@@ -6,9 +6,13 @@ import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
 
 import com.sample.entity.User;
+import com.sample.validator.ExistUsername;
+import com.sample.validator.PasswordConfirm;
 
+@PasswordConfirm(password = "password", passwordConfirm = "passwordConfirm")
 public class SignupForm {
 
+	@ExistUsername
 	@Email
 	private String username;
 	
@@ -44,7 +48,7 @@ public class SignupForm {
 	}
 	
 	public String getPasswordConfirm() {
-		return password;
+		return passwordConfirm;
 	}
 
 	public void setPasswordConfirm(String passwordConfirm) {
