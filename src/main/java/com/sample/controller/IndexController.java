@@ -27,7 +27,6 @@ public class IndexController {
     	
     	Page<Article> articles = postService.getAllArticles(pageable, true);
     	
-    	model.addAttribute("message", "This is sample page"); 	
     	model.addAttribute("articles", articles); 
     	
         return "index";

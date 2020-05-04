@@ -7,7 +7,6 @@
   <body>
     <header th:replace="base/common :: header('TOP')"></header>
     <article>
-	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<div th:each="article : ${articles}">
 		    <ul class="list-group" style="border:1px solid;">
 			  <li class="list-group-item">投稿名: <span th:text="${article.getPostName()}"></span></li>

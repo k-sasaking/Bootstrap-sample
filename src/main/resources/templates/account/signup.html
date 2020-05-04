@@ -7,7 +7,6 @@
   <body>
     <header th:replace="base/common :: header('Signup')"></header>
     <article>
-	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<form method="post" class="mx-auto w-50" th:action="@{/signup}" th:object="${signupForm}">
 		  <div class="form-group">
 		    <label for="username" th:classappend="${#fields.hasErrors('username')} ? text-danger : ''">Username</label>

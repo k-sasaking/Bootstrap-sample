@@ -25,7 +25,7 @@ public class LoginSuccessHandler  implements AuthenticationSuccessHandler {
 		
 		accountService.updateLastLogin((String)auth.getName());
 		
-        response.sendRedirect("/admin");		
+        response.sendRedirect("/admin?loginSuccess");		
 	}
 
 }

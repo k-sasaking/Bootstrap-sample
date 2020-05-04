@@ -8,7 +8,6 @@
     <header th:replace="base/common :: header('Signin')"></header>
     <article>
 	    <div class="alert alert-danger" th:if="${errorMessage}" th:text="${errorMessage}" role="alert">...</div>
-	    <p class="ml-3 pt-3"><span th:text="${message}"></span></p>
 		<form method="post" class="mx-auto w-50" th:action="@{/signin}">
 		  <div class="form-group">
 		    <label for="username">Username</label>

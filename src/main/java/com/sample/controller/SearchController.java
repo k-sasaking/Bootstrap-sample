@@ -36,7 +36,6 @@ public class SearchController {
     		articles = postService.searchArticles(pageable, searchWord, true);
     	}
     	
-    	model.addAttribute("message", "This is sample page"); 	
     	model.addAttribute("articles", articles); 
     	model.addAttribute("word", searchWord); 
     	

@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.sample.entity.Article;
 import com.sample.form.PostForm;
@@ -29,7 +30,6 @@ public class PostController {
     		PostForm postForm
     	) {
     	
-    	model.addAttribute("message", "This is post page"); 	
     	model.addAttribute("postForm", postForm); 	
     	
         return "post_form";
@@ -39,6 +39,7 @@ public class PostController {
     @RequestMapping(value = "/post/create", method = RequestMethod.POST)
     public String post_create(
     		Model model,
+    		RedirectAttributes redirectAttributes,
     		@ModelAttribute("postForm")
     		@Validated
     		PostForm postForm,
@@ -46,13 +47,13 @@ public class PostController {
     	) {
 
     	if(result.hasErrors()) {
-    		
-        	model.addAttribute("message", "This is post page"); 	
         	model.addAttribute("postForm", postForm); 	
         	
             return "post_form";
     	}
     	
+        redirectAttributes.addFlashAttribute("messageType", "success"); 
+    	redirectAttributes.addFlashAttribute("message", "register successed"); 
     	postService.createArticle(postForm);
     	
         return "redirect:/admin";
@@ -69,7 +70,6 @@ public class PostController {
     	
     	Optional<Article> resultArticle = postService.getArticleById(id);
 		if(resultArticle.isPresent()) {
-    		model.addAttribute("message", "This is post page"); 	
         	model.addAttribute("postForm", new PostForm(resultArticle.get())); 	
         	
             return "post_form";
@@ -86,7 +86,7 @@ public class PostController {
     	
     	Optional<Article> resultArticle = postService.getArticleById(id);
 		if(resultArticle.isPresent()) {
-    		model.addAttribute("message", "This is delete page"); 	
+			
         	model.addAttribute("article", resultArticle.get()); 	
         	
             return "delete_confirm";
@@ -98,12 +98,17 @@ public class PostController {
     @RequestMapping(value = "/post/delete/complete", method = RequestMethod.POST)
     public String post_delete_complete(
     		Model model,
+    		RedirectAttributes redirectAttributes,
     		@ModelAttribute("id")
     		Integer id
     	) {
 
-    	postService.deleteArticle(id);
-        return "redirect:/admin";
+        postService.deleteArticle(id);
+
+        redirectAttributes.addFlashAttribute("messageType", "success"); 
+    	redirectAttributes.addFlashAttribute("message", "delete successed"); 
+        
+    	return "redirect:/admin";
     	
     }
 

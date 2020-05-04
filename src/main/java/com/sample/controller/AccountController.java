@@ -32,10 +32,10 @@ public class AccountController {
 			) {
 		
 		if(error.isPresent()) {
-	    	model.addAttribute("errorMessage", "Cannot Authentication...Please check username and password"); 	
+	    	model.addAttribute("messageType", "danger"); 	
+	    	model.addAttribute("message", "Cannot Authentication...Please check username and password"); 	
 		}
     	model.addAttribute("username", username); 	
-    	model.addAttribute("message", "This is signin page"); 	
 	    	
         return "account/signin";
 	}
@@ -47,7 +47,6 @@ public class AccountController {
     		SignupForm signupForm
     	) {
     	
-    	model.addAttribute("message", "This is signup page"); 	
     	model.addAttribute("signupForm", signupForm); 	
 	    	
         return "account/signup";
@@ -63,8 +62,8 @@ public class AccountController {
     	) {
 		
     	if(result.hasErrors()) {
-    		
-        	model.addAttribute("message", "This is signup page"); 	
+	    	model.addAttribute("messageType", "danger"); 	
+	    	model.addAttribute("message", "Please check error message"); 	
         	model.addAttribute("postForm", signupForm); 	
             return "account/signup";
     	}

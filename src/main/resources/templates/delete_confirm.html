@@ -7,7 +7,6 @@
   <body>
     <header th:replace="base/common :: header('Post Form')"></header>
     <article>
-	    <h2 class="ml-3 pt-3"><span th:text="${message}"></span></h2>
 		<form method="post" th:action="@{/post/delete/complete}" th:object="${article}">
 		  <input type="hidden" name="id" th:value="*{id}">
 		  <div class="form-group">

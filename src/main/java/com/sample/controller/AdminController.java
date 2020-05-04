@@ -26,13 +26,18 @@ public class AdminController {
     @RequestMapping(value = "/admin", method = RequestMethod.GET)
     public String index(
     		Model model,
+    		@RequestParam("loginSuccess") 
+    		Optional<String> loginSuccess,
     		@PageableDefault(page = 0, size = 5) 
     		Pageable pageable
     	) {
     	
     	Page<Article> articles = postService.getAllArticles(pageable);
     	
-    	model.addAttribute("message", "This is sample page"); 	
+    	if(loginSuccess.isPresent()) {
+    		model.addAttribute("message", "login successed");
+    		model.addAttribute("messageType", "success");
+    	}
     	model.addAttribute("isAdmin", true); 
     	model.addAttribute("articles", articles); 
     	
@@ -55,7 +60,6 @@ public class AdminController {
     		articles = postService.searchArticles(pageable, searchWord);
     	}
     	
-    	model.addAttribute("message", "This is sample page"); 	
     	model.addAttribute("isAdmin", true); 
     	model.addAttribute("articles", articles); 
     	model.addAttribute("word", searchWord); 
